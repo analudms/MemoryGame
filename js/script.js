@@ -1,5 +1,8 @@
 const input = document.querySelector('.loginInput');
 const button = document.querySelector('.loginButton');
+const form = document.querySelector('.loginForm');
+
+
 
 const validateInput = ({target}) => {
     if (target.value.length > 2){
@@ -9,5 +12,12 @@ const validateInput = ({target}) => {
     }
 }
 
-input.addEventListener('input', validateInput)
+const handleSubmit = (event) => {
+    event.preventDefault();
 
+    localStorage.setItem('player',input.value);
+    window.location = 'pages/game.html';
+}
+
+input.addEventListener('input', validateInput)
+form.addEventListener('submit', handleSubmit)
