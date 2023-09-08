@@ -37,6 +37,7 @@
     backface-visibility: hidden;
 }
 
-.card:hover{
+.revealCard {
     transform: rotateY(180deg);
+
 }
