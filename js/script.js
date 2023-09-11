@@ -3,7 +3,7 @@ const button = document.querySelector('.loginButton');
 const form = document.querySelector('.loginForm');
 
 
-
+//função para definir tamanho do nome do jogador e habilitar o botão
 const validateInput = ({target}) => {
     if (target.value.length > 2){
         button.removeAttribute('disabled');  
@@ -12,6 +12,7 @@ const validateInput = ({target}) => {
     }
 }
 
+//guardar nome do jogador no armazenamento local
 const handleSubmit = (event) => {
     event.preventDefault();
 
