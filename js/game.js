@@ -1,7 +1,9 @@
+//criação de constantes para acessar do html no js
 const grid = document.querySelector('.grid');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
 
+//criando array com personagens para criar cartas
 const characters = [
     'beth',
     'jerry',
@@ -15,6 +17,7 @@ const characters = [
     'summer',
 ]
 
+//criando função para criar elementos para criar cartas
 const createElement = (tag, className) => {
     const element = document.createElement(tag);
     element.className = className;
@@ -24,6 +27,7 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
+//função para verificar se o jogador acertou todas as cartas
 const checkEndGame = () => {
     const disabledCard = document.querySelectorAll('.disabledCard');
 
@@ -33,6 +37,7 @@ const checkEndGame = () => {
     }
 }
 
+//função verifica se as cartas são iguais
 const checkCards = () => {
     const firstCharacter = firstCard.getAttribute('data-character');
     const secondCharacter = secondCard.getAttribute('data-character');
@@ -58,9 +63,9 @@ const checkCards = () => {
 
         }, 500);
     }
-
 }
 
+//função verifica se não tem nenhuma carta aberta e revela a carta clicada
 const revealCard = ({target}) => {
     if (target.parentNode.className.includes('reveal_card')){
         return;
@@ -77,6 +82,7 @@ const revealCard = ({target}) => {
     }
 }
 
+//função cria carta com adição de evento ao clicar
 const createCard = (character) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
@@ -93,18 +99,20 @@ const createCard = (character) => {
     return card;
 }
 
+//função de início de jogo, duplicando as cartas para criar o jogo
 const loadGame = () => {
 
     const duplicateCharacter = [ ... characters, ... characters];
 
     const shuffledArray = duplicateCharacter.sort(() => Math.random() - 0.5);
-
+//forEach -> percorre elementos do array e executa uma ação para cada um deles
     shuffledArray.forEach((character) => {
         const card = createCard(character);
         grid.appendChild(card);
     });
 }
 
+//função para começar o cronômetro
 const startTime = () => {
 
     this.loop = setInterval(() => {
@@ -112,9 +120,9 @@ const startTime = () => {
         const currentTime = Number(timer.innerHTML);
         timer.innerHTML = currentTime + 1;
     },1000);
-
-
 }
+
+//evento acionado quando a página estiver carregada
 window.onload = () => {
 
     spanPlayer.innerHTML = localStorage.getItem('player');
